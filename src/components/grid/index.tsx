@@ -1,4 +1,6 @@
 import React, { Children, FC } from 'react'
+
+import Block from './block'
 import { Container, Row } from './styles'
 
 const Grid: FC = () => {
@@ -13,9 +15,7 @@ const Grid: FC = () => {
           <Row data-cy="grid-row-container">
             {Children.toArray(
               [...Array(9)].map((_, colIndex) => (
-                <div data-cy="block" key={colIndex}>
-                  Test
-                </div>
+                <Block colIndex={colIndex} rowIndex={rowIndex} />
               ))
             )}
           </Row>
