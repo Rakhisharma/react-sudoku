@@ -10,8 +10,8 @@ export const Container = styled.div`
     flex-grow: 1;
     flex-shrink: 0;
     flex-basis: 0;
+    font-size: 20px;
     font-weight: bold;
-    font-size: 2px;
     height: auto;
     justify-content: center;
     transition: ${theme.transition};
