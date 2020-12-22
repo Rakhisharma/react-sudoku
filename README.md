@@ -1,3 +1,3 @@
-# Build Sudoku using react
+# Build Sudoku Game Using React
 
-Live link: https://rakhisharma.github.io/react-sudoku/ (coming soon)
+Live link to the Game: https://rakhisharma.github.io/react-sudoku/ (coming soon)
