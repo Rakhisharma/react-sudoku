@@ -1,13 +1,14 @@
 import { GRID, NUMBERS } from 'Typings'
-
 interface IInput {
   grid: GRID
-  row: number
+  col: number
   value: NUMBERS
 }
-
-const IsInRow = ({ grid, row, value }: IInput): boolean => {
-  return grid[row].includes(value)
+const isInCol = ({ grid, col, value }: IInput): boolean => {
+  for (let i = 0; i < 9; i++) {
+    if (value === grid[i][col]) return true
+  }
+  return false
 }
 
-export default IsInRow
+export default isInCol
