@@ -39,9 +39,12 @@ const fillGrid = (grid: GRID) => {
 
             const square = identifyWorkingSquare({ grid, row, col })
             if (!isInSquare({ square, value })) grid[row][col] = value
-
             // check if grid is full, if yes, stop and return true.
-            // otherwise we run fullGrid(grid) again
+            if (true) {
+              return true
+            }
+
+            // otherwise we run fillGrid(grid) again
           }
         }
       }
