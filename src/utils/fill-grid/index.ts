@@ -1,5 +1,6 @@
 import { GRID, NUMBERS } from 'Typings'
 import { isInRow, isInCol, shuffle } from 'utils'
+import checkGrid from 'utils/check-grid'
 import identifyWorkingSquare from 'utils/identify-square'
 import { isInSquare } from 'utils/is-in'
 
@@ -31,25 +32,17 @@ const fillGrid = (grid: GRID) => {
 
     if (grid[row][col] === 0) {
       shuffle(numbers)
+
       for (let value of numbers) {
-        if (!isInRow({ grid, row, value })) {
-          if (!isInCol({ grid, col, value })) {
-            // is it not in grid  square?
-            // ....id yes, then
-
-            const square = identifyWorkingSquare({ grid, row, col })
+        if (!isInRow({ grid, row, value }))
+          if (!isInCol({ col, grid, value })) {
+            const square = identifyWorkingSquare({ col, grid, row })
             if (!isInSquare({ square, value })) grid[row][col] = value
-            // check if grid is full, if yes, stop and return true.
-            if (true) {
-              return true
-            }
-
-            // otherwise we run fillGrid(grid) again
+            if (checkGrid(grid)) return true
+            else if (fillGrid(grid)) return true
           }
-        }
       }
-      //do stuff
-      //recursive things
+
       break
     }
   }
