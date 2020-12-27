@@ -7,6 +7,7 @@ import { unregister } from 'core'
 import { GlobalStyles, theme } from 'styles'
 
 ReactDOM.render(
+  // <> is also called React Fragment. you can use <Fragment> instead of <>
   <ThemeProvider theme={theme}>
     <GlobalStyles />
     {/* data-cy 'cy' is cypruss. it is usefull to use it 
