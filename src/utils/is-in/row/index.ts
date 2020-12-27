@@ -8,9 +8,7 @@ interface IInput {
 
 /**
  * A function that returns true is the values is already being used in the current grid row.
- * @param grid Object with 9X9 Sudoku grid
- * @param row  index with 9X9 Sudoku grid
- * @param value values with 9X9 Sudoku grid
+ * @param param0 grid Object with 9X9 Sudoku grid, row and values
  */
 
 const IsInRow = ({ grid, row, value }: IInput): boolean => {
