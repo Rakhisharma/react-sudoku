@@ -1,4 +1,3 @@
-import { GRID } from 'Typings'
 import createFullGrid from './index'
 
 describe('createFullGrid', () => {
