@@ -1,4 +1,5 @@
-import { GRID } from 'Typings'
+import { GRID, NUMBERS } from 'Typings'
+import shuffle from 'utils/shuffle'
 
 const gridExample: GRID = [
   [0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -11,6 +12,8 @@ const gridExample: GRID = [
   [0, 0, 0, 0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 0, 0, 0],
 ]
+
+const numbers: NUMBERS[] = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 
 /**
  * A backtracking/recursive function to check all the possible combination of numbers until a solution is found
@@ -25,11 +28,14 @@ const fillGrid = (grid: GRID) => {
     col = i % 9
 
     if (grid[row][col] === 0) {
+      shuffle(numbers)
       //do stuff
       //recursive things
       break
     }
   }
+
+  grid[row][col] = 0
 }
 
 export default fillGrid
