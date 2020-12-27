@@ -20,7 +20,7 @@ describe('isInCol', () => {
     expect(isInCol({ col: 8, grid, value: 9 })).toBeTruthy()
   })
 
-  it('returns false when value is in grid column', () => {
+  it('returns false when value is not grid column', () => {
     const grid: GRID = [
       [8, 4, 2, 6, 5, 1, 3, 9, 7],
       [5, 3, 7, 2, 8, 0, 6, 4, 1],
