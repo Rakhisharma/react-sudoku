@@ -29,6 +29,25 @@ const fillGrid = (grid: GRID) => {
 
     if (grid[row][col] === 0) {
       shuffle(numbers)
+      for (let value of numbers) {
+        // is it not in row?
+        if (!grid[row].includes(value)) {
+          // is it not in col?
+          let isNotInCol = true
+          for (let i = 0; i < 9; i++) {
+            if (value === grid[i][col]) isNotInCol = false
+          }
+
+          if (isNotInCol) {
+            // is it not in grid  square?
+          }
+        }
+        // ....id yes, then
+        grid[row][col] = value
+
+        // check if grid is full, if yes, stop and return true.
+        // otherwise we run fullGrid(grid) again
+      }
       //do stuff
       //recursive things
       break
