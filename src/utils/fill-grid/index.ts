@@ -1,5 +1,5 @@
 import { GRID, NUMBERS } from 'Typings'
-import shuffle from 'utils/shuffle'
+import { isInRow, shuffle } from 'utils'
 
 const gridExample: GRID = [
   [0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -31,7 +31,7 @@ const fillGrid = (grid: GRID) => {
       shuffle(numbers)
       for (let value of numbers) {
         // is it not in row?
-        if (!grid[row].includes(value)) {
+        if (!isInRow(grid, row, value)) {
           // is it not in col?
           let isNotInCol = true
           for (let i = 0; i < 9; i++) {
