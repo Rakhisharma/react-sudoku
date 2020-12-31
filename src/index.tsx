@@ -6,7 +6,6 @@ import { Provider } from 'react-redux'
 import { Content, Title, Card, Grid } from 'components'
 import { configureStore, unregister } from 'core'
 import { GlobalStyles, theme } from 'styles'
-import { config } from 'process'
 
 const store = configureStore()
 
