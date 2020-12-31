@@ -15,7 +15,9 @@ const Grid: FC = () => {
   const state = useSelector<IReducer, IState>(({ selectedBlocks }) => ({
     selectedBlocks,
   }))
+
   const dispatch = useDispatch<Dispatch<AnyAction>>()
+
   const create = useCallback(() => dispatch(createGrid()), [dispatch])
   useEffect(() => {
     create()
@@ -30,6 +32,7 @@ const Grid: FC = () => {
         ])
       )
   }
+
   const moveLeft = () => {
     if (state.selectedBlocks && state.selectedBlocks[1] > 0)
       dispatch(
@@ -49,6 +52,7 @@ const Grid: FC = () => {
         ])
       )
   }
+
   const moveUp = () => {
     if (state.selectedBlocks && state.selectedBlocks[0] > 0)
       dispatch(
@@ -60,9 +64,9 @@ const Grid: FC = () => {
   }
 
   useMouseTrap('down', moveDown)
-  useMouseTrap('up', moveUp)
-  useMouseTrap('right', moveRight)
   useMouseTrap('left', moveLeft)
+  useMouseTrap('right', moveRight)
+  useMouseTrap('up', moveUp)
 
   return (
     <Container data-cy="grid-container">
