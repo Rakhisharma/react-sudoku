@@ -1,12 +1,19 @@
-import React, { Children, FC } from 'react'
+import React, { Children, Dispatch, FC, useCallback, useEffect } from 'react'
+import { useDispatch } from 'react-redux'
+import { AnyAction } from 'redux'
 
 import Block from './block'
 import { createFullGrid } from 'utils'
 import { Container, Row } from './styles'
+import { createGrid } from 'reducers'
 
 const Grid: FC = () => {
-  const grid = createFullGrid()
-  console.log(grid)
+  const dispatch = useDispatch<Dispatch<AnyAction>>()
+  const create = useCallback(() => dispatch(createGrid()), [dispatch])
+  useEffect(() => {
+    create()
+  }, [])
+
   return (
     <Container data-cy="grid-container">
       {/* Use Children.toArray() to map items, as in this way you
