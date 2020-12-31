@@ -5,7 +5,7 @@ import useMouseTrap from 'react-hook-mousetrap'
 
 import Block from './block'
 import { Container, Row } from './styles'
-import { createGrid, IReducer } from 'reducers'
+import { createGrid, IReducer, selectBlock } from 'reducers'
 import { BLOCK_COORD, INDEX } from 'Typings'
 
 interface IState {
@@ -22,20 +22,41 @@ const Grid: FC = () => {
   }, [create])
 
   const moveDown = () => {
-    if (state.selectedBlocks && state.selectedBlocks[0] < 8) console.log('down')
+    if (state.selectedBlocks && state.selectedBlocks[0] < 8)
+      dispatch(
+        selectBlock([
+          (state.selectedBlocks[0] + 1) as INDEX,
+          state.selectedBlocks[1],
+        ])
+      )
   }
-
-  const moveUp = () => {
-    if (state.selectedBlocks && state.selectedBlocks[0] > 0) console.log('up')
-  }
-
   const moveLeft = () => {
-    if (state.selectedBlocks && state.selectedBlocks[1] > 0) console.log('left')
+    if (state.selectedBlocks && state.selectedBlocks[1] > 0)
+      dispatch(
+        selectBlock([
+          state.selectedBlocks[0],
+          (state.selectedBlocks[1] - 1) as INDEX,
+        ])
+      )
   }
 
   const moveRight = () => {
     if (state.selectedBlocks && state.selectedBlocks[1] < 8)
-      console.log('right')
+      dispatch(
+        selectBlock([
+          state.selectedBlocks[0],
+          (state.selectedBlocks[1] + 1) as INDEX,
+        ])
+      )
+  }
+  const moveUp = () => {
+    if (state.selectedBlocks && state.selectedBlocks[0] > 0)
+      dispatch(
+        selectBlock([
+          (state.selectedBlocks[0] - 1) as INDEX,
+          state.selectedBlocks[1],
+        ])
+      )
   }
 
   useMouseTrap('down', moveDown)
