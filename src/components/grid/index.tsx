@@ -12,7 +12,7 @@ const Grid: FC = () => {
   const create = useCallback(() => dispatch(createGrid()), [dispatch])
   useEffect(() => {
     create()
-  }, [])
+  }, [create])
 
   return (
     <Container data-cy="grid-container">
