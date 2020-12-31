@@ -19,7 +19,8 @@ const Block: FC<Props> = ({ colIndex, rowIndex }) => {
   }))
   return (
     <Container data-cy={`block-${rowIndex}-${colIndex}`}>
-      {state.value}
+      {/* if value is 0 then grid should be empty */}
+      {state.value === 0 ? '' : state.value}
     </Container>
   )
 }
