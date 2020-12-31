@@ -5,6 +5,7 @@ import { AnyAction } from 'redux'
 import Block from './block'
 import { Container, Row } from './styles'
 import { createGrid } from 'reducers'
+import { INDEX } from 'Typings'
 
 const Grid: FC = () => {
   const dispatch = useDispatch<Dispatch<AnyAction>>()
@@ -24,7 +25,10 @@ const Grid: FC = () => {
           <Row data-cy="grid-row-container">
             {Children.toArray(
               [...Array(9)].map((_, colIndex) => (
-                <Block colIndex={colIndex} rowIndex={rowIndex} />
+                <Block
+                  colIndex={colIndex as INDEX}
+                  rowIndex={rowIndex as INDEX}
+                />
               ))
             )}
           </Row>

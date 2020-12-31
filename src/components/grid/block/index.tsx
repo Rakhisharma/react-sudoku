@@ -1,12 +1,13 @@
 import React, { FC } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { AnyAction, Dispatch } from 'redux'
 
-import { IReducer } from 'reducers'
+import { IReducer, selectBlock } from 'reducers'
 import { Container } from './styles'
-import { N } from 'Typings'
+import { INDEX, N } from 'Typings'
 interface Props {
-  colIndex: number
-  rowIndex: number
+  colIndex: INDEX
+  rowIndex: INDEX
 }
 
 interface IState {
@@ -17,8 +18,15 @@ const Block: FC<Props> = ({ colIndex, rowIndex }) => {
   const state = useSelector<IReducer, IState>(({ grid }) => ({
     value: grid ? grid[rowIndex][colIndex] : 0,
   }))
+
+  const dispatch = useDispatch<Dispatch<AnyAction>>()
+
+  const handleClick = () => {
+    dispatch(selectBlock([rowIndex, colIndex]))
+  }
+
   return (
-    <Container data-cy={`block-${rowIndex}-${colIndex}`}>
+    <Container data-cy={`block-${rowIndex}-${colIndex}`} onClick={handleClick}>
       {/* if value is 0 then grid should be empty */}
       {state.value === 0 ? '' : state.value}
     </Container>

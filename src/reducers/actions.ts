@@ -7,7 +7,7 @@ export const createGrid = (): Action => ({
   type: types.CREATE_GRID,
 })
 
-export const select = (coords: BLOCK_COORD): AnyAction => ({
+export const selectBlock = (coords: BLOCK_COORD): AnyAction => ({
   coords,
   type: types.SELECT_BLOCK,
 })
