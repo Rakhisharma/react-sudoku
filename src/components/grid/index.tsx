@@ -3,7 +3,6 @@ import { useDispatch } from 'react-redux'
 import { AnyAction } from 'redux'
 
 import Block from './block'
-import { createFullGrid } from 'utils'
 import { Container, Row } from './styles'
 import { createGrid } from 'reducers'
 
