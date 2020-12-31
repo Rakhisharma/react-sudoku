@@ -11,11 +11,15 @@ interface Props {
 }
 
 interface IState {
+  isActive: boolean
   value: N
 }
 
 const Block: FC<Props> = ({ colIndex, rowIndex }) => {
-  const state = useSelector<IReducer, IState>(({ grid }) => ({
+  const state = useSelector<IReducer, IState>(({ grid, selectedBlocks }) => ({
+    isActive: selectedBlocks
+      ? selectedBlocks[0] === rowIndex && selectedBlocks[1] === colIndex
+      : false,
     value: grid ? grid[rowIndex][colIndex] : 0,
   }))
 
@@ -26,7 +30,11 @@ const Block: FC<Props> = ({ colIndex, rowIndex }) => {
   }
 
   return (
-    <Container data-cy={`block-${rowIndex}-${colIndex}`} onClick={handleClick}>
+    <Container
+      active={state.isActive}
+      data-cy={`block-${rowIndex}-${colIndex}`}
+      onClick={handleClick}
+    >
       {/* if value is 0 then grid should be empty */}
       {state.value === 0 ? '' : state.value}
     </Container>
