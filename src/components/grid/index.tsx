@@ -1,79 +1,75 @@
-import React, { Children, Dispatch, FC, useCallback, useEffect } from 'react'
+import React, { FC, Children, useCallback, useEffect } from 'react'
+import useMousetrap from 'react-hook-mousetrap'
 import { useDispatch, useSelector } from 'react-redux'
-import { AnyAction } from 'redux'
-import useMouseTrap from 'react-hook-mousetrap'
+import { AnyAction, Dispatch } from 'redux'
+
+import { createGrid, IReducer, selectBlock } from 'reducers'
+import { INDEX, BLOCK_COORD } from 'Typings'
 
 import Block from './block'
 import { Container, Row } from './styles'
-import { createGrid, IReducer, selectBlock } from 'reducers'
-import { BLOCK_COORD, INDEX } from 'Typings'
 
 interface IState {
-  selectedBlocks?: BLOCK_COORD
+  selectedBlock?: BLOCK_COORD
 }
+
 const Grid: FC = () => {
-  const state = useSelector<IReducer, IState>(({ selectedBlocks }) => ({
-    selectedBlocks,
+  const state = useSelector<IReducer, IState>(({ selectedBlock }) => ({
+    selectedBlock,
   }))
-
   const dispatch = useDispatch<Dispatch<AnyAction>>()
-
   const create = useCallback(() => dispatch(createGrid()), [dispatch])
   useEffect(() => {
     create()
   }, [create])
 
-  const moveDown = () => {
-    if (state.selectedBlocks && state.selectedBlocks[0] < 8)
+  function moveDown() {
+    if (state.selectedBlock && state.selectedBlock[0] < 8)
       dispatch(
         selectBlock([
-          (state.selectedBlocks[0] + 1) as INDEX,
-          state.selectedBlocks[1],
+          (state.selectedBlock[0] + 1) as INDEX,
+          state.selectedBlock[1],
         ])
       )
   }
 
-  const moveLeft = () => {
-    if (state.selectedBlocks && state.selectedBlocks[1] > 0)
+  function moveLeft() {
+    if (state.selectedBlock && state.selectedBlock[1] > 0)
       dispatch(
         selectBlock([
-          state.selectedBlocks[0],
-          (state.selectedBlocks[1] - 1) as INDEX,
+          state.selectedBlock[0],
+          (state.selectedBlock[1] - 1) as INDEX,
         ])
       )
   }
 
-  const moveRight = () => {
-    if (state.selectedBlocks && state.selectedBlocks[1] < 8)
+  function moveRight() {
+    if (state.selectedBlock && state.selectedBlock[1] < 8)
       dispatch(
         selectBlock([
-          state.selectedBlocks[0],
-          (state.selectedBlocks[1] + 1) as INDEX,
+          state.selectedBlock[0],
+          (state.selectedBlock[1] + 1) as INDEX,
         ])
       )
   }
 
-  const moveUp = () => {
-    if (state.selectedBlocks && state.selectedBlocks[0] > 0)
+  function moveUp() {
+    if (state.selectedBlock && state.selectedBlock[0] > 0)
       dispatch(
         selectBlock([
-          (state.selectedBlocks[0] - 1) as INDEX,
-          state.selectedBlocks[1],
+          (state.selectedBlock[0] - 1) as INDEX,
+          state.selectedBlock[1],
         ])
       )
   }
 
-  useMouseTrap('down', moveDown)
-  useMouseTrap('left', moveLeft)
-  useMouseTrap('right', moveRight)
-  useMouseTrap('up', moveUp)
+  useMousetrap('down', moveDown)
+  useMousetrap('left', moveLeft)
+  useMousetrap('right', moveRight)
+  useMousetrap('up', moveUp)
 
   return (
     <Container data-cy="grid-container">
-      {/* Use Children.toArray() to map items, as in this way you
-        you don't have to pass 'key' or 'id' in your div. if you use just array
-        you need to pass key in you element, react provides a way to get rid of this 
-        using Children.toArray()*/}
       {Children.toArray(
         [...Array(9)].map((_, rowIndex) => (
           <Row data-cy="grid-row-container">

@@ -1,6 +1,8 @@
-import { GRID, BLOCK_COORD } from 'Typings'
+import { BLOCK_COORD, GRID } from 'Typings'
 
 export interface IReducer {
-  grid?: GRID
-  selectedBlocks?: BLOCK_COORD
+  challengeGrid?: GRID
+  selectedBlock?: BLOCK_COORD
+  solvedGrid?: GRID
+  workingGrid?: GRID
 }

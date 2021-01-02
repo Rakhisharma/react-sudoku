@@ -1,11 +1,13 @@
 import React, { FC } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { AnyAction, Dispatch } from 'redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { Dispatch, AnyAction } from 'redux'
 
 import { IReducer, selectBlock } from 'reducers'
+import { N, INDEX } from 'Typings'
+
 import { Container } from './styles'
-import { INDEX, N } from 'Typings'
-interface Props {
+
+interface IProps {
   colIndex: INDEX
   rowIndex: INDEX
 }
@@ -15,18 +17,19 @@ interface IState {
   value: N
 }
 
-const Block: FC<Props> = ({ colIndex, rowIndex }) => {
-  const state = useSelector<IReducer, IState>(({ grid, selectedBlocks }) => ({
-    isActive: selectedBlocks
-      ? selectedBlocks[0] === rowIndex && selectedBlocks[1] === colIndex
-      : false,
-    value: grid ? grid[rowIndex][colIndex] : 0,
-  }))
-
+const Block: FC<IProps> = ({ colIndex, rowIndex }) => {
+  const state = useSelector<IReducer, IState>(
+    ({ workingGrid, selectedBlock }) => ({
+      isActive: selectedBlock
+        ? selectedBlock[0] === rowIndex && selectedBlock[1] === colIndex
+        : false,
+      value: workingGrid ? workingGrid[rowIndex][colIndex] : 0,
+    })
+  )
   const dispatch = useDispatch<Dispatch<AnyAction>>()
 
-  const handleClick = () => {
-    dispatch(selectBlock([rowIndex, colIndex]))
+  function handleClick() {
+    if (!state.isActive) dispatch(selectBlock([rowIndex, colIndex]))
   }
 
   return (
@@ -35,7 +38,6 @@ const Block: FC<Props> = ({ colIndex, rowIndex }) => {
       data-cy={`block-${rowIndex}-${colIndex}`}
       onClick={handleClick}
     >
-      {/* if value is 0 then grid should be empty */}
       {state.value === 0 ? '' : state.value}
     </Container>
   )
