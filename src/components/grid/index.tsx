@@ -4,13 +4,13 @@ import { useDispatch, useSelector } from 'react-redux'
 import { AnyAction, Dispatch } from 'redux'
 
 import { createGrid, IReducer, selectBlock } from 'reducers'
-import { INDEX, BLOCK_COORD } from 'Typings'
+import { INDEX, BLOCK_COORDS } from 'Typings'
 
 import Block from './block'
 import { Container, Row } from './styles'
 
 interface IState {
-  selectedBlock?: BLOCK_COORD
+  selectedBlock?: BLOCK_COORDS
 }
 
 const Grid: FC = () => {

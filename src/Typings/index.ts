@@ -1,4 +1,4 @@
-export type BLOCK_COORD = [INDEX, INDEX]
+export type BLOCK_COORDS = [INDEX, INDEX]
 
 export type GRID = [ROW, ROW, ROW, ROW, ROW, ROW, ROW, ROW, ROW]
 
