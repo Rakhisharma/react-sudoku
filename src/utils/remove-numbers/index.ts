@@ -1,5 +1,5 @@
 import { GRID } from 'Typings'
-import { copyGrid, getRandomIndex } from 'utils'
+import { copyGrid, getRandomIndex, solveGrid } from 'utils'
 import global from 'global'
 
 /**
@@ -26,7 +26,7 @@ const removeNumbers = (grid: GRID, attempts = 5) => {
     global.counter = 0
 
     //attempt to solve the grid
-
+    solveGrid(gridCopy)
     //if global counter is not 1
     //inside this grid[row][col] = backup
     //decrement attempts
