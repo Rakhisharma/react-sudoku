@@ -1,14 +1,18 @@
 import { GRID, NUMBERS } from 'Typings'
-import { isInRow, isInCol, shuffle } from 'utils'
-import checkGrid from 'utils/check-grid'
-import identifyWorkingSquare from 'utils/identify-square'
-import { isInSquare } from 'utils/is-in'
+import {
+  checkGrid,
+  identifySquare,
+  isInCol,
+  isInRow,
+  isInSquare,
+  shuffle,
+} from 'utils'
 
 const numbers: NUMBERS[] = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 
 /**
- * A backtracking/recursive function to check all the possible combination of numbers until a solution is found
- * @param grid 9x9 sudoku grid
+ * A backtracking/recursive function to check all the possible combinations of numbers a solution is found
+ * @param grid  9X9 Sudoku Grid
  */
 const fillGrid = (grid: GRID) => {
   let row = 0
@@ -24,7 +28,7 @@ const fillGrid = (grid: GRID) => {
       for (let value of numbers) {
         if (!isInRow({ grid, row, value }))
           if (!isInCol({ col, grid, value })) {
-            const square = identifyWorkingSquare({ col, grid, row })
+            const square = identifySquare({ col, grid, row })
             if (!isInSquare({ square, value })) {
               grid[row][col] = value
               if (checkGrid(grid)) return true
