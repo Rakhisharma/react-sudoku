@@ -1,3 +1,2 @@
-# Build Sudoku Game Using React
+Sudoku Game Using React and Typescript
 
-Live link to the Game(coming soon)
